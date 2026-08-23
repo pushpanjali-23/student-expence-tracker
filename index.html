@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Expense & Budget Tracker</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="header">
+    <div>
+      <p class="eyebrow">PERSONAL FINANCE</p>
+      <h1>Student Expense & Budget Tracker</h1>
+      <p class="subtitle">Keep your monthly spending simple and under control.</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="budget-section">
+      <label for="budgetInput">Monthly Budget</label>
+      <div class="budget-input-row">
+        <span class="currency">₹</span>
+        <input type="number" id="budgetInput" min="0" step="0.01" placeholder="Enter your monthly budget">
+        <button id="saveBudgetBtn" class="secondary-btn">Save Budget</button>
+      </div>
+    </section>
+
+    <section class="summary-grid">
+      <div class="summary-card">
+        <span class="card-label">Total Budget</span>
+        <strong id="totalBudget">₹0.00</strong>
+      </div>
+      <div class="summary-card">
+        <span class="card-label">Total Spent</span>
+        <strong id="totalSpent">₹0.00</strong>
+      </div>
+      <div class="summary-card">
+        <span class="card-label">Remaining Budget</span>
+        <strong id="remainingBudget">₹0.00</strong>
+      </div>
+    </section>
+
+    <section class="content-grid">
+      <div class="panel">
+        <div class="panel-heading">
+          <h2>Add Expense</h2>
+          <p>Record a new transaction.</p>
+        </div>
+
+        <form id="expenseForm">
+          <div class="form-group">
+            <label for="expenseAmount">Expense Amount</label>
+            <div class="input-with-symbol">
+              <span>₹</span>
+              <input type="number" id="expenseAmount" min="0.01" step="0.01" placeholder="e.g. 250" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="expenseCategory">Category</label>
+            <select id="expenseCategory" required>
+              <option value="">Select category</option>
+              <option value="Food">Food</option>
+              <option value="Transport">Transport</option>
+              <option value="Education">Education</option>
+              <option value="Shopping">Shopping</option>
+              <option value="Entertainment">Entertainment</option>
+              <option value="Bills">Bills</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="expenseDescription">Description</label>
+            <input type="text" id="expenseDescription" maxlength="80" placeholder="e.g. Lunch at college" required>
+          </div>
+
+          <div class="form-group">
+            <label for="expenseDate">Date</label>
+            <input type="date" id="expenseDate" required>
+          </div>
+
+          <button type="submit" class="primary-btn">Add Expense</button>
+        </form>
+      </div>
+
+      <div class="panel">
+        <div class="panel-heading">
+          <h2>Category-wise Spending</h2>
+          <p>See where your money is going.</p>
+        </div>
+        <div class="chart-wrap">
+          <canvas id="spendingChart" width="500" height="300" aria-label="Category-wise spending chart"></canvas>
+          <p id="chartEmpty" class="empty-chart">Add expenses to see the chart.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel transactions-panel">
+      <div class="panel-heading transaction-heading">
+        <div>
+          <h2>Transactions</h2>
+          <p id="transactionCount">0 expenses recorded</p>
+        </div>
+      </div>
+
+      <div id="transactionList" class="transaction-list"></div>
+      <div id="emptyState" class="empty-state">
+        <h3>No expenses yet</h3>
+        <p>Your added expenses will appear here.</p>
+      </div>
+    </section>
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
